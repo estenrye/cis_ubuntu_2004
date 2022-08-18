@@ -843,7 +843,7 @@
               and ansible_facts.getent_shadow[key][0] != '*'
               and ansible_facts.getent_shadow[key][0] != '!'
               and ansible_facts.getent_shadow[key][0] != '!!'
-              and ansible_facts.getent_shadow[key][2] | int < ubuntu_2004_cis_require_passmindays -%}
+              and ansible_facts.getent_shadow[key][2] | int < ubuntu_2004_cis_require_passmindays | int -%}
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
@@ -851,7 +851,7 @@
     - name: "5.5.1.1| Remediate users with password min days less than {{ubuntu_2004_cis_require_passmindays}}. (Automated)"
       user:
         name: "{{ item }}"
-        password_expire_min: "{{ ubuntu_2004_cis_require_passmindays }}"
+        password_expire_min: "{{ ubuntu_2004_cis_require_passmindays | int }}"
       loop: "{{ ubuntu_2004_cis_5_5_1_1_remediated_users }}"
   when:
     - ubuntu_2004_cis_section5_rule_5_5_1_1

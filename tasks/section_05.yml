@@ -839,7 +839,7 @@
         ubuntu_2004_cis_5_5_1_1_remediated_users: >-
           {%- set items = [] -%}
           {%- for key in ansible_facts.getent_shadow -%}
-          {%- if ansible_facts.getent_shadow[key][0] != '!*' 
+          {%- if ansible_facts.getent_shadow[key][0] != '!*'
               and ansible_facts.getent_shadow[key][0] != '*'
               and ansible_facts.getent_shadow[key][0] != '!'
               and ansible_facts.getent_shadow[key][0] != '!!'

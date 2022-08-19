@@ -852,7 +852,7 @@
       user:
         name: "{{ item }}"
         password_expire_min: "{{ ubuntu_2004_cis_require_passmindays | int }}"
-      loop: "{{ ubuntu_2004_cis_5_5_1_1_remediated_users | from_json }}"
+      loop: "{{ ubuntu_2004_cis_5_5_1_1_remediated_users }}"
   when:
     - ubuntu_2004_cis_section5_rule_5_5_1_1
     - ubuntu_2004_cis_section5
@@ -894,7 +894,7 @@
       user:
         name: "{{ item }}"
         password_expire_max: "{{ ubuntu_2004_cis_require_passmaxdays | int }}"
-      loop: "{{ ubuntu_2004_cis_5_5_1_2_remediated_users | from_json }}"
+      loop: "{{ ubuntu_2004_cis_5_5_1_2_remediated_users }}"
   when:
     - ubuntu_2004_cis_section5_rule_5_5_1_2
     - ubuntu_2004_cis_section5
@@ -927,7 +927,7 @@
               and ansible_facts.getent_shadow[key][0] != '*'
               and ansible_facts.getent_shadow[key][0] != '!'
               and ansible_facts.getent_shadow[key][0] != '!!'
-              and ansible_facts.getent_shadow[key][4] | int < ubuntu_2004_cis_require_passwarnarge | int -%}
+              and ansible_facts.getent_shadow[key][4] | int < ubuntu_2004_cis_require_passwarnage | int -%}
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
@@ -936,7 +936,7 @@
       user:
         name: "{{ item }}"
         password_expire_max: "{{ ubuntu_2004_cis_require_passwarnage | int }}"
-      loop: "{{ ubuntu_2004_cis_5_5_1_3_remediated_users | from_json }}"
+      loop: "{{ ubuntu_2004_cis_5_5_1_3_remediated_users }}"
   when:
     - ubuntu_2004_cis_section5_rule_5_5_1_3
     - ubuntu_2004_cis_section5
@@ -976,7 +976,7 @@
           {{ items | to_json }}
     - name: "5.5.1.4| Remediate users with inactive password lock greater than {{ubuntu_2004_cis_require_passinactive}} days. (Automated)"
       command: chage --inactive {{ ubuntu_2004_cis_require_passinactive | int }} {{item}}
-      loop: "{{ ubuntu_2004_cis_5_5_1_4_remediated_users | from_json }}"
+      loop: "{{ ubuntu_2004_cis_5_5_1_4_remediated_users }}"
   when:
     - ubuntu_2004_cis_section5_rule_5_5_1_4
     - ubuntu_2004_cis_section5

@@ -847,7 +847,7 @@
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
-          {{ items | to_json }}
+          {{ items }}
     - name: "5.5.1.1| Remediate users with password min days less than {{ubuntu_2004_cis_require_passmindays}}. (Automated)"
       user:
         name: "{{ item }}"
@@ -889,7 +889,7 @@
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
-          {{ items | to_json }}
+          {{ items }}
     - name: "5.5.1.2| Remediate users with password max days greater than {{ubuntu_2004_cis_require_passmaxdays}} days. (Automated)"
       user:
         name: "{{ item }}"
@@ -931,7 +931,7 @@
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
-          {{ items | to_json }}
+          {{ items }}
     - name: "5.5.1.3| Remediate users with password expiration warning days less than {{ubuntu_2004_cis_require_passwarnage}} days. (Automated)"
       user:
         name: "{{ item }}"
@@ -973,7 +973,7 @@
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
-          {{ items | to_json }}
+          {{ items }}
     - name: "5.5.1.4| Remediate users with inactive password lock greater than {{ubuntu_2004_cis_require_passinactive}} days. (Automated)"
       command: chage --inactive {{ ubuntu_2004_cis_require_passinactive | int }} {{item}}
       loop: "{{ ubuntu_2004_cis_5_5_1_4_remediated_users }}"

@@ -885,7 +885,7 @@
               and ansible_facts.getent_shadow[key][0] != '*'
               and ansible_facts.getent_shadow[key][0] != '!'
               and ansible_facts.getent_shadow[key][0] != '!!'
-              and ansible_facts.getent_shadow[key][3] | int < ubuntu_2004_cis_require_passmaxdays | int -%}
+              and ansible_facts.getent_shadow[key][3] | int > ubuntu_2004_cis_require_passmaxdays | int -%}
           {{ items.append(key) }}
           {%- endif -%}
           {%- endfor -%}
